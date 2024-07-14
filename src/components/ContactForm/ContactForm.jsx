@@ -4,7 +4,7 @@ import css from "./ContactForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -28,13 +28,7 @@ const ContactForm = () => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(
-      addContact({
-        id: Date.now().toString(),
-        name: values.name,
-        number: values.number,
-      })
-    );
+    dispatch(addContact(values));
     resetForm();
   };
 
